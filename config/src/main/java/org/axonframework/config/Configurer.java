@@ -38,6 +38,7 @@ import java.util.List;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * Entry point of the Axon Configuration API.
@@ -527,6 +528,15 @@ public interface Configurer {
     default Configurer registerEventHandler(Function<Configuration, Object> eventHandlerBuilder) {
         eventProcessing().registerEventHandler(eventHandlerBuilder);
         return this;
+    }
+
+    default <MC extends ModuleConfiguration> MC getModuleConfiguration(Class<MC> clazz) {
+        throw new UnsupportedOperationException();
+    }
+
+    default <MC extends ModuleConfiguration> MC getModuleConfiguration(Class<MC> clazz,
+                                                                       Supplier<MC> defaultModuleConfiguration) {
+        throw new UnsupportedOperationException();
     }
 
     /**
